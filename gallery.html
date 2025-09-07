@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Memories with Kashvi 💖</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="center-content gallery-wrap">
+    <h1>✨ Sweet Memories ✨</h1>
+    <div class="slider">
+      <button class="nav prev" onclick="moveSlide(-1)" aria-label="Previous">&#10094;</button>
+      <div class="slides">
+        <img src="photo1.jpg" alt="Memory 1"/>
+        <img src="photo2.jpg" alt="Memory 2"/>
+        <img src="photo3.jpg" alt="Memory 3"/>
+        <img src="photo4.jpg" alt="Memory 4"/>
+      </div>
+      <button class="nav next" onclick="moveSlide(1)" aria-label="Next">&#10095;</button>
+    </div>
+    <div class="dots"></div>
+    <nav class="links small-gap">
+      <a href="index.html">🏠 Home</a>
+      <span class="sep">|</span>
+      <a href="letter.html">💌 A Letter</a>
+    </nav>
+  </div>
+
+  <script>
+    let idx = 0;
+    const imgs = ()=> Array.from(document.querySelectorAll('.slides img'));
+    const dotsBox = document.querySelector('.dots');
+
+    function show(n){
+      const list = imgs();
+      if(n>=list.length) idx=0; else if(n<0) idx=list.length-1; else idx=n;
+      list.forEach((img,i)=> img.style.display = i===idx ? 'block':'none');
+      dotsBox.innerHTML='';
+      list.forEach((_,i)=>{
+        const d=document.createElement('span');
+        d.className='dot' + (i===idx?' active':'');
+        d.onclick=()=>show(i);
+        dotsBox.appendChild(d);
+      });
+    }
+    function moveSlide(d){ show(idx+d); }
+    show(0);
+    setInterval(()=>moveSlide(1), 3500);
+  </script>
+</body>
+</html>
