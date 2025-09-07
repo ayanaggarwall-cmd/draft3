@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Sweet 16, Kashvi 🎉</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="balloons-layer"></div>
+
+  <div class="center-content">
+    <h1>🎂 Happy Sweet 16, Kashvi! 🎉</h1>
+    <h2>Wishing you a day filled with joy, laughter, and love 💖</h2>
+    <p>You are truly special, and I’m so lucky to celebrate this milestone with you.
+      May your 16th year be filled with endless smiles, adventures, and happiness!</p>
+    <nav class="links">
+      <a href="gallery.html">📸 Memories</a>
+      <span class="sep">|</span>
+      <a href="letter.html">💌 A Letter</a>
+    </nav>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    setInterval(() => confetti({ origin: { x: Math.random(), y: 0.6 } }), 2200);
+
+    const IMG_PATHS = [
+      'img/balloons/balloon-red.png',
+      'img/balloons/balloon-blue.png',
+      'img/balloons/balloon-yellow.png'
+    ];
+
+    const layer = document.getElementById('balloons-layer');
+
+    function spawnSingle() {
+      const img = document.createElement('img');
+      img.className = 'balloon single';
+      img.src = IMG_PATHS[Math.floor(Math.random() * IMG_PATHS.length)];
+      const scale = 0.7 + Math.random() * 0.8;
+      img.style.setProperty('--x', Math.random() * 100 + 'vw');
+      img.style.setProperty('--dur', (8 + Math.random()*6) + 's');
+      img.style.setProperty('--scale', scale);
+      layer.appendChild(img);
+      setTimeout(() => img.remove(), 16000);
+    }
+
+    function spawnBunch() {
+      const group = document.createElement('div');
+      group.className = 'balloon-bunch';
+      group.style.setProperty('--x', Math.random() * 100 + 'vw');
+      group.style.setProperty('--dur', (9 + Math.random()*6) + 's');
+      const count = 3 + Math.floor(Math.random()*3);
+      for (let i=0;i<count;i++) {
+        const img = document.createElement('img');
+        img.src = IMG_PATHS[Math.floor(Math.random() * IMG_PATHS.length)];
+        img.className = 'balloon';
+        const offset = (i - (count-1)/2) * (10 + Math.random()*12);
+        img.style.transform = `translateX(${offset}px) rotate(${(Math.random()*10-5)}deg)`;
+        group.appendChild(img);
+      }
+      layer.appendChild(group);
+      setTimeout(() => group.remove(), 18000);
+    }
+
+    setInterval(spawnSingle, 900);
+    setInterval(spawnBunch, 2200);
+  </script>
+</body>
+</html>
