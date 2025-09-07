@@ -46,3 +46,11 @@ body{
 
 /* Letter */
 .letter-text{ font-family: 'Dancing Script', cursive; font-size:1.4em; }
+.slider img {
+  max-width: 80%;
+  max-height: 500px;
+  object-fit: contain;
+  margin: auto;
+  display: block;
+  border-radius: 20px;
+}
