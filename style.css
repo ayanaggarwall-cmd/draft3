@@ -54,3 +54,11 @@ body{
   display: block;
   border-radius: 20px;
 }
+.slider img {
+  max-width: 80%;
+  max-height: 500px;
+  object-fit: contain;
+  margin: auto;
+  display: block;
+  border-radius: 20px;
+}
