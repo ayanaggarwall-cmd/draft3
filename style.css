@@ -1,0 +1,48 @@
+/* Theme */
+:root{ --gold:#FFD44D; --lav:#E6E6FA; --cream:#FFF8DC; }
+*{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh; overflow-x:hidden;
+  font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--cream);
+  background: radial-gradient(1200px 600px at 50% 20%, rgba(255,255,255,.22), rgba(255,255,255,0) 60%),
+              linear-gradient(135deg, #6a11cb, #ff5f99 45%, #57c1eb);
+}
+.center-content{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  text-align:center; max-width:900px; width:clamp(280px,90vw,900px); padding:24px; }
+.center-content h1{ font-size:clamp(36px,6vw,72px); margin:0 0 12px; color:var(--gold);
+  text-shadow:0 0 14px rgba(255,212,77,.8); animation:glow 2.2s ease-in-out infinite alternate; }
+.center-content h2{ color:var(--lav); margin:10px 0 16px; font-size:clamp(20px,3vw,36px); }
+.center-content p{ color:var(--cream); opacity:.95; font-size:clamp(16px,2.2vw,20px); line-height:1.6; }
+.links{ margin-top:18px; display:flex; align-items:center; justify-content:center; gap:14px; font-weight:600; }
+.links a{ color:var(--gold); text-decoration:none; } .links a:hover{ color:var(--lav); } .sep{opacity:.5}
+@keyframes glow{ from{ text-shadow:0 0 8px rgba(255,212,77,.8),0 0 18px rgba(255,105,180,.6) }
+                 to{   text-shadow:0 0 16px rgba(255,212,77,1),0 0 28px rgba(255,105,180,.9) } }
+
+/* Balloons */
+#balloons-layer{ position:fixed; inset:0; pointer-events:none; overflow:hidden; }
+.balloon,.balloon-bunch{ position:absolute; bottom:-180px; left:var(--x,50vw);
+  animation: floatUp var(--dur,12s) linear forwards; will-change:transform; }
+.balloon{ transform-origin:50% 100%; animation-name: floatUp, bob; animation-duration: var(--dur,12s), 3s;
+  animation-timing-function: linear, ease-in-out; animation-iteration-count:1, infinite; }
+.balloon.single{ transform: scale(var(--scale,1)); }
+.balloon-bunch img{ width:110px; height:auto; filter: drop-shadow(0 6px 10px rgba(0,0,0,.25));
+  animation: bob 3s ease-in-out infinite; }
+@keyframes bob{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+@keyframes floatUp{ from{transform:translateY(0)} to{transform:translateY(-120vh)} }
+
+/* Gallery slider */
+.gallery-wrap{ width:clamp(280px,90vw,900px) }
+.slider{ position:relative; margin:16px auto; max-width:780px; overflow:visible; border-radius:16px;
+  box-shadow:0 10px 24px rgba(0,0,0,.25); }
+.slides img{ display:none; width:100%; border-radius:16px; }
+.nav{ position:absolute; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:999px;
+  border:2px solid var(--gold); background:rgba(0,0,0,.35); color:var(--gold); font-size:22px; line-height:1;
+  display:flex; align-items:center; justify-content:center; cursor:pointer; transition:.2s;
+  box-shadow:0 6px 16px rgba(0,0,0,.35); }
+.nav:hover{ background:rgba(0,0,0,.55); color:var(--lav) } .prev{ left:-60px } .next{ right:-60px }
+.dots{ margin-top:10px } .dot{ display:inline-block; width:10px; height:10px; border-radius:50%;
+  margin:0 5px; background:#fff3; border:2px solid var(--gold); cursor:pointer } .dot.active{ background:var(--gold) }
+
+/* Letter */
+.letter-text{ font-family: 'Dancing Script', cursive; font-size:1.4em; }
