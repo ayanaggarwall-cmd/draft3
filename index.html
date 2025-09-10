@@ -8,30 +8,18 @@
 </head>
   <script>
 function createBalloon() {
-  const balloon = document.createElement("div");
-  balloon.classList.add("balloon");
-  balloon.textContent = "🎈";  // emoji instead of image
-  document.body.appendChild(balloon);
+    const balloon = document.createElement("div");
+    balloon.classList.add("balloon");
+    balloon.textContent = "🎈";
+    balloon.style.left = Math.random() * 100 + "vw";
+    balloon.style.fontSize = (Math.random() * 2 + 1.5) + "rem";
+    balloon.style.animationDuration = (Math.random() * 5 + 5) + "s";
+    document.body.appendChild(balloon);
 
-  // random horizontal position
-  balloon.style.left = Math.random() * window.innerWidth + "px";
-
-  // random size (between 1.5rem and 3.5rem)
-  const size = 1.5 + Math.random() * 2;
-  balloon.style.fontSize = size + "rem";
-
-  // random speed (5–10s)
-  const duration = 5 + Math.random() * 5;
-  balloon.style.animationDuration = duration + "s";
-
-  // remove balloon after animation ends
-  setTimeout(() => {
-    balloon.remove();
-  }, duration * 1000);
+    setTimeout(() => balloon.remove(), 10000);
 }
-
-// keep spawning balloons
 setInterval(createBalloon, 800);
+
 </script>
 
 <body>
